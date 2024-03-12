@@ -14,12 +14,15 @@ See the License for the specific language governing permissions and
 limitations under the License.
 \
 
-lit:{$[x~count[x]#y;(count[x]_y;x);()]} / literal text
-chr:lit x / char
-
-rep:{r:();while[not ()~a:x y;r,:a 1;y:a 0];(y;r)} / repeat
-
+l:{$[x~count[x]#y;(count[x]_y;x);()]} / literal
+c:{[x:`c;y]$[x~first y;(1_y;x);()]} / char
+rep:{r:();while[not ()~()a:x y;y:a 0;r,:a 1];(y;r)} / repeat
 cin:{$[(y1:first y)in x;(1_y;y1);()]} / char in
-
-num:{"I"$(cin (first')string til 10)[x]} / number
+num:{@[rep[cin["0123456789"]][x];1;"J"$]} / number
+seq:{(s0;a):x z;(s1;b):y s0;(s1;(a;b))} / sequence
+par:{$[()~r:x z;y z;r]} / parallel
+map:{(s;a):y z;(s;x a)} / map
+end:{$[x~"";("",());()]} / $
+bnd:{[x;y;z](s0;a):x z;y[a][s0]} / monadic bind
+e:{$[()~r:x y;'`parse;not ""~r 0;'`rest;r 1]} / eval
 
