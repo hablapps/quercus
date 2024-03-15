@@ -1,5 +1,4 @@
 / quercus: parser combinators for q
-
 \d .qu
 
 ret:{enlist(x;y)};
@@ -9,6 +8,8 @@ zero:{[x]()};
 plus:{x[z],y z};
 many:{plus[bind[{map[(enlist[z],)]y x}[x;.z.s];x];ret()]};
 many1:{bind[{map[(enlist[y],)]many x}[x];x]};
+times:{('[;]/[((x-1)#seq)@\:y]y)};
+fil:{bind[{(zero;ret y)x y}[y]][x]}; / filter
 item:{$[""~x;();enlist(first x;1_ x)]};
 seq:{bind[{map[{(x;y)}y][x]}[y]]x};
 sat:{bind[{$[x y;ret y;zero]}[x];item]}; / satisfies?
@@ -24,5 +25,4 @@ num:many1 digit;
 c:{[x:`c]sat[(x=)]}; / char
 j:map[("J"$)]num; / long
 s:map[(`$)]word; / symbol
-s:map[(`$)]wrd; / symbol
 
