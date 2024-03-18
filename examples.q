@@ -11,7 +11,7 @@
 
 // Email local part (simple)
 // [a-zA-Z0-9\.]+
-lp:.qu.many1[.qu.plus[.qu.anm;.qu.c"."]];
+lp:.qu.many1[.qu.plus[.qu.alphanum;.qu.c"."]];
 
 // Regular domain name
 // \w+\.(?:\.\w+)*\.\w+
