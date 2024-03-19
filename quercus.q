@@ -9,17 +9,17 @@ plus:{x[z],y z};
 many:{plus[bind[{map[(enlist[z],)]y x}[x;.z.s];x];ret()]};
 many1:{bind[{map[(enlist[y],)]many x}[x];x]};
 times:{('[;]/[((x-1)#seq)@\:y]y)};
-fil:{bind[{(zero;ret y)x y}[y]][x]}; / filter
+fil:{bind[{(zero;ret y)x y}[y]][x]};
 sep:{seq[many1[seq[x;y]];x]};
 item:{$[""~x;();enlist(first x;1_ x)]};
 seq:{bind[{map[{(x;y)}y][x]}[y]]x};
-sat:{bind[{$[x y;ret y;zero]}[x];item]}; / satisfies?
+sat:{bind[{$[x y;ret y;zero]}[x];item]};
 range:{sat{(x<=z)&z<=y}[x;y]};
 digit:range ."09";
 lwr:range ."az";
 upr:range ."AZ";
-letter:plus[.qu.lwr;.qu.upr];
-anm:plus[letter;digit];
+letter:plus[lwr;upr];
+alphanum:plus[letter;digit];
 str:{$[x~count[x]#y;enlist(x;count[x]_y);()]};
 word:many letter;
 num:many1 digit;
