@@ -27,7 +27,25 @@ ipv4:.qu.c["["] seq sn seq (3 times .qu.c["."] seq sn) seq .qu.c["]"];
 pe:lp seq .qu.c["@"] seq .qu.plus[dn;ipv4];
 
 // Evaluating
-pe"oscar.nydza@habla.dev" / valid
-pe"a@b@c@example.com" / non valid
-pe"oscar.nydza@domain.subdomain.tld" / valid
+show pe"oscar.nydza@habla.dev"; / valid
+show pe"a@b@c@example.com"; / non valid
+show pe"oscar.nydza@domain.subdomain.tld"; / valid
+
+
+// Spanish ID
+// given this list of ids, validate them:
+ids:("78187169A";
+     "97404065P";
+     "50625576T";
+     "00148482V";
+     "40548751G";
+     "40548251G");
+
+v:til[23]!"TRWAGMYFPDXBNJZSQVHLCKE";
+
+// DNI pattern with validation on the fly
+dnip:.qu.bind[{[x;y;v]$[v[x mod 23]=first y;.qu.ret[string[x],y;""];()]}[;;v]][.qu.j];
+
+// validate each DNI
+show dnip each ids;
 
