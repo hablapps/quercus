@@ -25,3 +25,6 @@ c:{[x:`c]sat[(x=)]}; / char
 j:map[("J"$)]num; / long
 s:map[(`$)]word; / symbol
 
+rparse:{$[()~r:x y;'`parse;1<count r;'`ambig;[(a;s):r 0;not ""~s];'`spare;a]};
+vparse:{.[{[x]1b}prs::;(x;y);0b]};
+
