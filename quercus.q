@@ -5,6 +5,8 @@
 ret:{enlist(x;y)};
 bind:{raze({(a;s):y;x[a]s}[x]')y@};
 map:{bind[(ret x::)]};
+trav:{({bind[{map[{raze(x;y)}[y]][x]}[y]]x}/)(x')y};
+seqA:trav[::];
 zero:{[x]()};
 plus:{x[z],y z};
 many:{plus[bind[{map[(enlist[z],)]y x}[x;.z.s];x];ret()]};
@@ -24,4 +26,5 @@ num:many1 digit;
 c:{[x:`c]sat[(x=)]}; / char
 j:map[("J"$)]num; / long
 s:map[(`$)]word; / symbol
+times:{$[x<1;ret();seqA x#y]};
 
