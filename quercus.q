@@ -8,6 +8,7 @@ trav:{({bind[{map[{raze(x;y)}[y]][x]}[y]]x}/)(x')y};
 seqA:trav[::];
 zero:{[x]()};
 plus:{x[z],y z};
+fil:{bind[{(zero;ret y)x y}[x]][y]};
 opt:{plus[x;ret()]};
 many:{plus[bind[{map[(enlist[z],)]y x}[x;.z.s];x];ret()]};
 many1:{bind[{map[(enlist[y],)]many x}[x];x]};
