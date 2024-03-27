@@ -19,6 +19,8 @@ item:{$[""~x;();enlist(first x;1_ x)]};
 seqf:{bind[{map[{x(y;z)}[x;z]][y]}[x;z]]y};
 seql:seqf[first];seqr:seqf[last];seq:seqf[enlist .];
 sat:{bind[{$[x y;ret y;zero]}[x];item]};
+oneof:{sat in[;x]};
+noneof:{sat(not in[;x]::)};
 range:{sat{(x<=z)&z<=y}[x;y]};
 digit:range ."09";
 lwr:range ."az";
