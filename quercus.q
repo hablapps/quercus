@@ -34,3 +34,6 @@ c:item;
 j:map[("J"$)]num;
 s:map[(`$)]word;
 
+rparse:{$[()~r:x y;'`parse;1<count r;'`ambig;[(a;s):r 0;not ""~s];'`spare;a]};
+vparse:{.[{[x]1b}rparse::;(x;y);0b]};
+
