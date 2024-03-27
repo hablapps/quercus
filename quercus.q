@@ -19,7 +19,7 @@ upr:range ."AZ";
 letter:plus[lwr;upr];
 alphanum:plus[letter;digit];
 str:{$[x~count[x]#y;enlist(x;count[x]_y);()]};
-word:many letter;
+word:many1 letter;
 num:many1 digit;
 c:{[x:`c]sat[(x=)]}; / char
 j:map[("J"$)]num; / long
