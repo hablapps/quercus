@@ -29,6 +29,7 @@ str:{$[x~count[x]#y;enlist(x;count[x]_y);()]};
 word:many letter;
 num:many1 digit;
 chr:{[x:`c]sat[(x=)]};
+eof:{$[""~x;ret[()]x;zero x]};
 c:item;
 j:map[("J"$)]num;
 s:map[(`$)]word;
