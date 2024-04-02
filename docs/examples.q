@@ -10,6 +10,12 @@ sn:.qu.fil[(255>"J"$)][.qu.plus[.qu.times[3;.qu.digit];.qu.plus[.qu.times[2;.qu.
 // \[\d{3}(?:\.\d{3})\] with subnet validation
 ipv4:.qu.seqf[raze(,).][sn;.qu.times[3;.qu.seq[.qu.chr["."];sn]]]
 
+lc:("192.168.1.1";
+    "45.75.4.75";
+    "156.255.1.27");
+show .qu.vparse[enlist first ipv4::] each lc;
+
+
 // -----------------------
 // Matching an email with the following parts:
 // {local_part}@{domain}
@@ -17,22 +23,25 @@ ipv4:.qu.seqf[raze(,).][sn;.qu.times[3;.qu.seq[.qu.chr["."];sn]]]
 
 // Email local part (simple)
 // [a-zA-Z0-9\.]+
-lp:.qu.many1[.qu.plus[.qu.alphanum;.qu.c"."]];
+lp:.qu.many1[.qu.plus[.qu.alphanum;.qu.chr"."]];
 
 // Regular domain name
 // \w+\.(?:\.\w+)*\.\w+
 dn:(.qu.seqf[raze raze::]/)(.qu.word;.qu.many[.qu.seq[.qu.chr["."];.qu.word]];.qu.chr["."];.qu.word);
 
 // Email ipv4 is surrounded by brackets
-eipv4:(.qu.seq/)(.qu.c["["];ipv4;.qu.c["]"]);
+eipv4:(.qu.seqf[(,).]/)(.qu.chr["["];ipv4;.qu.chr["]"]);
 
 // Email pattern
-pe:lp seq .qu.c["@"] seq .qu.plus[dn;eipv4];
+pe:(.qu.seqf[(,).]/)(lp;.qu.chr["@"];.qu.plus[dn;eipv4]);
 
 // Evaluating
-show pe"oscar.nydza@habla.dev"; / valid
-show pe"a@b@c@example.com"; / non valid
-show pe"oscar.nydza@domain.subdomain.tld"; / valid
+le:("local.part@habla.dev"; / valid
+    "a@b@c@example.com"; / non valid
+    "local.part@domain.subdomain.tld"; / valid
+    "local.part@[192.168.1.2]"); / valid
+
+show .qu.vparse[enlist first pe::] each le;
 
 // -----------------------
 v:til[23]!"TRWAGMYFPDXBNJZSQVHLCKE";
@@ -48,11 +57,17 @@ ids:("78187169A";
      "40548751G";
      "40548251G");
 
-show dnip each ids;
+show .qu.vparse[dnip] each ids;
 
 // -----------------------
 // ISIN
-isin:"AU0000XVGZA3"
+isins:("US0378331005";
+       "US0373831005";
+       "U50378331005";
+       "US03378331005";
+       "AU0000XVGZA3";
+       "AU0000VXGZA3";
+       "FR0000988040");
 // Validation functions
 toBase10:{raze string .Q.nA?x};
 luhn:{
@@ -66,4 +81,4 @@ luhn:{
 isinp:(.qu.seqf[(,).]/)(.qu.times[2;.qu.upr];.qu.times[9;.qu.alphanum];.qu.digit);
 
 // Validate on the fly
-show .qu.fil[(luhn toBase10::)][isinp] isin
+show .qu.vparse[.qu.fil[(luhn toBase10::)][isinp]] each isin;
