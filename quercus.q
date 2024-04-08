@@ -12,6 +12,7 @@ fil:{bind[{(zero;ret y)x y}[x]][y]};
 opt:{plus[x;ret()]};
 many:{plus[bind[{map[(enlist[z],)]y x}[x;.z.s];x];ret()]};
 many1:{bind[{map[(enlist[y],)]many x}[x];x]};
+upto:{fil[{x>=count y}[x]]many y};
 times:{$[x<1;ret();seqA x#y]};
 sep1:{bind[{map[{enlist[x],y}[z]]many seqr[x;y]}[y;x]]x};
 sep:{plus[sep1[x;y];ret()]};
@@ -37,6 +38,7 @@ spaces:skip many space:chr" ";
 eof:{$[""~x;ret[()]x;zero x]};
 parens:between[chr"(";chr")"];
 braces:between[chr"{";chr"}"];
+tof:map("F"$);
 toj:map("J"$);
 tos:map(`$);
 c:item;
@@ -45,6 +47,5 @@ s:tos word;
 
 rparse:{$[()~r:x y;'`parse;1<count r;'`ambig;[(a;s):r 0;not ""~s];'`spare;a]};
 vparse:{.[{[x]1b}rparse::;(x;y);0b]};
-
 \d .
 
