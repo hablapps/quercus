@@ -1,9 +1,15 @@
-\l ../querqus.q;
+\l quercus.q
+\l test/tests.q
 
 test:{z~.[.qu.rparse;(x;y);::]};
 testtime:{[parser;input;expected;times]
-    do[times;r,:(system"t [parser][input]")];
-    expected>=avg r};
+    system "t ",parser,input}
+evaluation:{{test[x;y;z]}' [x[`parser];x[`input];x[`expected]]};
 
-// begin tests
-flip(!).(`func;.qu.ret)
+addTests: {
+    k!{
+        (&/)evaluation[v,flip([]parser:{
+            op:get[`.qu]x;
+            $[count[y]>0;op . y;op]}[y;] peach (v:x[y])`args)]}[t;] peach k:1 _ key t:get`.test};
+
+tests: ([]function: key s;test: value s:addTests[])
