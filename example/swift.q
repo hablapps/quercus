@@ -9,9 +9,6 @@
 \l b4.q
 \l b5.q
 
-block:{braces bind[{map[y,enlist::]x y}[x]] seql[tos upto[3;alphanum];chr":"]};
-field:block;
-
 .sw.1:seqd 1_get`.b1;
 .sw.2:bind[seqd 1_get `.b2I`.b2O "O"~ ::]oneof"IO";
 .sw.3:fil[all `103`121 in key::] kv2d many1 field get`.b3;
