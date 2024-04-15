@@ -11,7 +11,7 @@
 .b4.51A:seqA party,idcod;
 .b4.52A:seqA party,opt upto[35;xT];
 .b4.52D:seqA party,lines[4;upto[35;xT]];
-.b4.53A:seqA(times[4;aT];times[2;aT];times[2;cT];opt times[3;cT]);
+.b4.53A:seqA times[4;aT],times[2;aT],times[2;cT],opt times[3;cT];
 .b4.53B:upto[32;xT];
 .b4.53D:lines[4;upto[35;xT]];
 .b4.54A:seqA party,idcod;

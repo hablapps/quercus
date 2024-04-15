@@ -15,7 +15,7 @@
 .sw.4:man seql[kv2d many1 seqr[opt chr"\n";sub];str"\n-"];
 .sw.5:fil[`CHK in key::] kv2d many1 field get`.b5;
 
-p:kv2d seql[many block get`.sw;eof];
+p:fil[`1 in key::] kv2d seql[many block get`.sw;eof];
 swift:rparse[p];
 \d .
 

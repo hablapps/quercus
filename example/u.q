@@ -5,7 +5,7 @@ reify:map enlist;
 yymmdd:tod times[6;nT];
 hhmm:tot times[4;nT];
 hhmmss:tot times[6;nT];
-ssx:map[(`time$(10*)::)]toj times[2;nT];
+ssx:map[`time$(10*)::]toj times[2;nT];
 YYMMDDSSss:map[sum]seqA yymmdd,hhmmss,opt ssx;
 dsh:chr"-";
 slsh:chr"/";
