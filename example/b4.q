@@ -1,5 +1,5 @@
 .b4.20:upto[16;xT];
-.b4.23B:times[4;cT];
+.b4.23B:tos times[4;cT];
 .b4.23E:seqA times[4;cT],sl upto[30;xT];
 .b4.26T:times[3;cT];
 .b4.32A:seqA (toj times[6;nT]),(tos times[3;aT]),dec[15];
