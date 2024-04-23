@@ -22,4 +22,5 @@ mir:mor:seqA yymmdd,
 nme:seqr[chr":";seql[tos many1 alphanum;chr":"]];
 sub:bind[{map[{(x;y)}[x]](get`.b4)x}]nme;
 man:fil[all `20`23B in key::];
+val:all(1_value get`.val)@\: ::;
 
